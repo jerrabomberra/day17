@@ -3,7 +3,7 @@ from question_model import Question
 from quiz_brain import QuizBrain
 
 question_bank =[]
-answer_bank=[]
+
 for question in question_data:
     question_text = question["text"]
     question_answer = question["answer"]
@@ -11,4 +11,16 @@ for question in question_data:
     question_bank.append(new_question)
 
 quiz = QuizBrain(question_bank)
-quiz.next_question()
+# quiz.next_question()
+
+while quiz.still_has_questions:
+    quiz.next_question()
+    break
+
+print("You've completed the quiz")
+print(f"Your final score was: {quiz.score}/{quiz.question_number}")
+if quiz.score > 5:
+    print("Well done - you've passed")
+else:
+    print("Don't go on the Chase - you've failed")
+
